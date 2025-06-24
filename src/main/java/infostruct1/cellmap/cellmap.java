@@ -67,6 +67,17 @@ public class cellmap {
         }
         curnet.get(c.y).put(c.x,c);
     }
+    public boolean checkpast(int x,int y){
+        if(x<0||y<0)
+            return false;
+        if(curnet.get(y)!=null)if(curnet.get(y).get(x)!=null)return false;
+        return true;
+    }
+    public cell getcell(int x,int y){
+        if(x<0||y<0)return null;
+        if(curnet.get(y)!=null)return curnet.get(y).get(x);
+        return null;
+    }
 
 
 

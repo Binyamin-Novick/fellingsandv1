@@ -4,6 +4,7 @@ import basicfloater.stionery;
 import basicsand.sandc;
 import infostruct1.cellmap.cellmap;
 import infostruct1.cellmap.viewC;
+import startup.water.watercell;
 import vizials.bordpanele;
 
 import javax.swing.*;
@@ -41,15 +42,15 @@ public class sandview {
             @Override
             public void mousePressed(MouseEvent e) {
                 if (SwingUtilities.isLeftMouseButton(e)) {
-                    x = (bp.getWidth()-e.getX()) / 4; // if using scale like 10 pixels per cell
-                    y = (bp.getHeight()- e.getY()) / 4;
+                    x = (bp.getWidth()-e.getX()) / 10; // if using scale like 10 pixels per cell
+                    y = (bp.getHeight()- e.getY()) / 10;
                     mousedown=1;
 
 
                 }
                 if(SwingUtilities.isRightMouseButton(e)){
-                    x = (bp.getWidth()-e.getX()) / 4; // if using scale like 10 pixels per cell
-                    y = (bp.getHeight()- e.getY()) / 4;
+                    x = (bp.getWidth()-e.getX()) / 10; // if using scale like 10 pixels per cell
+                    y = (bp.getHeight()- e.getY()) / 10;
                     mousedown=2;
                 }
             }
@@ -61,14 +62,14 @@ public class sandview {
             if(x!=null)
                 if(y!=null){
                     if(mousedown==1)
-                        cm.addcell(new sandc(x,y));
+                        cm.addcell(new watercell(x,y));
                     if(mousedown==2){
                         cm.addcell(new stionery(x,y));
                     }
                 }
             i++;
             if(i%4==3){
-                cm.addcell(new sandc(100,100));
+                cm.addcell(new sandc(45,45));
                 i=0;
 
             }
