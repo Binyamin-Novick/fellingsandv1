@@ -8,14 +8,14 @@ import java.awt.image.BufferedImage;
 import java.util.List;
 
 public class bordpanele extends JPanel {
-    private final int SCALE = 10;
+    public  int SCALE = 10;
     BufferedImage bufferidimge;
     public bordpanele(){
-        setPreferredSize(new Dimension(800,600));
-        bufferidimge =new BufferedImage(800,600,BufferedImage.TYPE_3BYTE_BGR);
+        setPreferredSize(new Dimension(80*SCALE,60*SCALE));
+        bufferidimge =new BufferedImage(80*SCALE,60*SCALE,BufferedImage.TYPE_3BYTE_BGR);
     }
     public bordpanele(int x,int y){
-        setPreferredSize(new Dimension(x,y));
+        setPreferredSize(new Dimension(x*SCALE,y*SCALE));
         bufferidimge =new BufferedImage(x,y,BufferedImage.TYPE_3BYTE_BGR);
     }
 

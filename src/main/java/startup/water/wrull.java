@@ -47,14 +47,14 @@ public class wrull extends applyer {
         if(i<2) {
             if (!c.cem.checkpast(c.x + 1, c.y + 1) || !c.cem.checkpast(c.x - 1, c.y + 1) || !c.cem.checkpast(c.x, c.y + 1)||push) {
                 if (b)
-                    if (c.cem.checkpast(c.x + 1, c.y)) {
+                    if (c.cem.checkpast(c.x + 1, c.y)&&c.cem.checklock(c.x+1,c.y)) {
                         c.x++;
                         push=false;
                         c.cem.addcell(c);
                     } else {
                         side(!b, c, i + 1);
                     }
-                else if (c.cem.checkpast(c.x - 1, c.y)) {
+                else if (c.cem.checkpast(c.x - 1, c.y)&&c.cem.checklock(c.x-1,c.y)) {
                     c.x--;
                     push=false;
                     c.cem.addcell(c);
@@ -82,5 +82,6 @@ public class wrull extends applyer {
             c.cem.addcell(c);
             return;
         }
+        push=false;
     }
 }

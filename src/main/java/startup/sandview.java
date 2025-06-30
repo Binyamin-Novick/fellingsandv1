@@ -26,6 +26,7 @@ public class sandview {
         List<viewC> viewCList=new ArrayList<>();
 
         bp.loadcells(viewCList);
+        bp.SCALE=10;
         JFrame frame = new JFrame("Cell RGB Viewer");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(bp);
@@ -42,23 +43,28 @@ public class sandview {
             @Override
             public void mousePressed(MouseEvent e) {
                 if (SwingUtilities.isLeftMouseButton(e)) {
-                    x = (bp.getWidth()-e.getX()) / 10; // if using scale like 10 pixels per cell
-                    y = (bp.getHeight()- e.getY()) / 10;
+                    x = (bp.getWidth()-e.getX()) / bp.SCALE; // if using scale like 10 pixels per cell
+                    y = (bp.getHeight()- e.getY()) / bp.SCALE;
                     mousedown=1;
 
 
                 }
                 if(SwingUtilities.isRightMouseButton(e)){
-                    x = (bp.getWidth()-e.getX()) / 10; // if using scale like 10 pixels per cell
-                    y = (bp.getHeight()- e.getY()) / 10;
+                    x = (bp.getWidth()-e.getX()) / bp.SCALE; // if using scale like 10 pixels per cell
+                    y = (bp.getHeight()- e.getY()) / bp.SCALE;
                     mousedown=2;
                 }
             }
         });
     Boolean b=true;
     int i=0;
+    Timer t = new Timer(16,(e -> {bp.loadcells(cm.View());
+        bp.repaint();}));
+        t.start();
         while (true){
-            sleep(16);
+            sleep(20);
+
+
             if(x!=null)
                 if(y!=null){
                     if(mousedown==1)
@@ -68,15 +74,15 @@ public class sandview {
                     }
                 }
             i++;
-            if(i%4==3){
-                cm.addcell(new sandc(45,45));
+            if(i%7==6){
+
+                cm.addcell(new sandc((40)*(10/ bp.SCALE),(40)*(10/ bp.SCALE)));
                 i=0;
 
             }
             cm.tryNextStep();
             cm.resolve();
-            bp.loadcells(cm.View());
-            bp.repaint();
+
         }
     }
 }
